@@ -1,0 +1,58 @@
+#Hello!
+#This program is a menu driven program.
+import math
+import os
+
+def is_armstrong(num):
+    order = len(str(num))
+    sum = 0
+    temp = num
+    while temp > 0:
+        digit = temp % 10
+        sum += digit ** order
+        temp //= 10
+    return sum == num
+
+def is_palindrome(num):
+    return str(num) == str(num)[::-1]
+
+def is_perfect_square(num):
+    return int(math.sqrt(num)) ** 2 == num
+
+def is_perfect_cube(num):
+    cube_root = round(num ** (1/3))
+    return cube_root ** 3 == num
+
+def calculator():
+    print("\nOpening Calculator...")
+    os.system("calc" if os.name == "nt" else "gnome-calculator")
+
+while True:
+    print("\nMenu:")
+    print("1. Check if Armstrong number")
+    print("2. Check if Palindrome number")
+    print("3. Check if Perfect Square")
+    print("4. Check if Perfect Cube")
+    print("5. Open Calculator")
+    print("6. Exit")
+
+    choice = input("Enter your choice (1-6): ")
+
+    if choice in ['1', '2', '3', '4']:
+        num = int(input("Enter a number: "))
+
+    if choice == '1':
+        print("Armstrong Number" if is_armstrong(num) else "Not an Armstrong Number")
+    elif choice == '2':
+        print("Palindrome Number" if is_palindrome(num) else "Not a Palindrome Number")
+    elif choice == '3':
+        print("Perfect Square" if is_perfect_square(num) else "Not a Perfect Square")
+    elif choice == '4':
+        print("Perfect Cube" if is_perfect_cube(num) else "Not a Perfect Cube")
+    elif choice == '5':
+        calculator()
+    elif choice == '6':
+        print("Exiting the program.")
+        break
+    else:
+        print("Invalid choice. Please try again.")
